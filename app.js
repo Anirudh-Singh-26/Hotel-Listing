@@ -76,10 +76,22 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+const cors = require("cors");
+
+// Allow all origins (open)
+app.use(cors());
+
+// OR safer: allow only your portfolio domain
+app.use(cors({ origin: "*" }));
+
+
+
 app.use((req, res, next)=>{
+  console.log("------------------------------------------------------------------------------------")
+  console.log("req.user:", req.user);
+  res.locals.currUser= req.user || null;
   res.locals.success= req.flash("success");
   res.locals.error= req.flash("error");
-  res.locals.currUser= req.user;
   next();
 })
 
