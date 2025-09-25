@@ -82,7 +82,7 @@ const cors = require("cors");
 app.use(cors());
 
 // OR safer: allow only your portfolio domain
-app.use(cors({ origin: "*" }));
+app.use(cors({ origin: "*" })); //Good to see
 
 
 
